@@ -1,10 +1,10 @@
 // arc1.rs
 // Make this code compile by filling in a value for `shared_numbers` where the
-// TODO comment is and create an initial binding for `child_numbers`
+// xTODO comment is and create an initial binding for `child_numbers`
 // somewhere. Try not to create any copies of the `numbers` Vec!
 // Execute `rustlings hint arc1` for hints :)
 
-// I AM NOT DONE
+// I AM DONE
 
 #![forbid(unused_imports)] // Do not change this, (or the next) line.
 use std::sync::Arc;
@@ -12,10 +12,11 @@ use std::thread;
 
 fn main() {
     let numbers: Vec<_> = (0..100u32).collect();
-    let shared_numbers = // TODO
+    let shared_numbers = Arc::new(numbers); // TODO
     let mut joinhandles = Vec::new();
 
     for offset in 0..8 {
+        let child_numbers = shared_numbers.clone();
         joinhandles.push(thread::spawn(move || {
             let mut i = offset;
             let mut sum = 0;
